@@ -13,7 +13,7 @@ RUN apt-get update \
 	#libgl1-mesa-dri mesa-utils libpci-dev libegl-dev libgl-dev \
 	nvidia-driver-460 nvidia-modprobe qt5-default firefox \
 	#XXX: remove this later
-	traceroute ping \
+	traceroute iputils-ping \
  && ln -fs /usr/share/zoneinfo/Europe/Zagreb /etc/localtime \
  && dpkg-reconfigure tzdata \
  && rm -rf /var/lib/apt/lists/*
