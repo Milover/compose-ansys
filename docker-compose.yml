@@ -11,4 +11,7 @@ services:
     volumes:
       #- /tmp/.X11-unix:/tmp/.X11-unix
       - /home/philipp/.Xauthority:/home/ansys/.Xauthority:rw
+      - /opt/ansys:/opt/ansys
     network_mode: host
+#    devices:
+#      - /dev/dri/card0:/dev/dri/card0
