@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  ansys:
+    image: ansys:latest
+    build:
+      context: .
+      target: build
+    environment:
+      - DISPLAY=${DISPLAY}
+    volumes:
+      #- /tmp/.X11-unix:/tmp/.X11-unix
+      - /home/philipp/.Xauthority:/home/ansys/.Xauthority:rw
+    network_mode: host
