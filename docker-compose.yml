@@ -6,11 +6,15 @@ services:
     build:
       context: .
       target: build
+      args:
+        - USR=${USR}
+        - GRP=${GRP}
     environment:
       - DISPLAY=${DISPLAY}
     volumes:
       #- /tmp/.X11-unix:/tmp/.X11-unix
-      - /home/philipp/.Xauthority:/home/ansys/.Xauthority:rw
+      - /home/${SUDO_USER}/.Xauthority:/home/${USR}/.Xauthority:rw
+      # only for testing, the final image will contain the binaries
       - /opt/ansys:/opt/ansys
     network_mode: host
 #    devices:
