@@ -3,7 +3,7 @@
 # --------------------------------------------------------------------------- #
 # Build image
 
-FROM ubuntu:20.04 as build
+FROM debian:bullseye as build
 
 ARG USR
 ARG GRP
@@ -12,12 +12,9 @@ ARG GRP
 ARG DEBIAN_FRONTEND=noninteractive 
 RUN apt-get update \
  && apt-get install --no-install-recommends -y \
-	tcl tk perl gzip tar openssl \
-	#libgl1-mesa-dri mesa-utils libpci-dev libegl-dev libgl-dev \
-	nvidia-driver-460 mesa-utils nvidia-modprobe qt5-default firefox \
-	#traceroute iputils-ping iproute2 \
- && ln -fs /usr/share/zoneinfo/Europe/Zagreb /etc/localtime \
- && dpkg-reconfigure tzdata \
+	apt-utils tcl tk perl gzip tar openssl \
+	libgl1-mesa-dev x11-common zathura libxtst6 mesa-utils firefox-esr \
+	qttools5-dev libqt5x11extras5-dev qtxmlpatterns5-dev-tools libqt5svg5-dev \
  && rm -rf /var/lib/apt/lists/*
 
 RUN echo "dash dash/sh boolean false" | debconf-set-selections \
@@ -36,7 +33,6 @@ WORKDIR $HOME
 #CMD ["/usr/bin/firefox"]
 #CMD ["/opt/ansys/ansys_inc/v221/fluent/bin/fluent"]
 #CMD ["/opt/ansys/ansys_inc/v221/Framework/bin/Linux64/runwb2"]
-
 
 # --------------------------------------------------------------------------- #
 # Runtime image
