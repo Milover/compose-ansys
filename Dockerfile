@@ -29,11 +29,6 @@ WORKDIR $HOME
 
 #ADD --chown=ansys:ansys ansys/ /opt/ansys/
 
-#ENTRYPOINT ["/bin/bash", "-c"]
-#CMD ["/usr/bin/firefox"]
-#CMD ["/opt/ansys/ansys_inc/v221/fluent/bin/fluent"]
-#CMD ["/opt/ansys/ansys_inc/v221/Framework/bin/Linux64/runwb2"]
-
 # --------------------------------------------------------------------------- #
 # Runtime image
 

@@ -9,6 +9,10 @@ services:
       args:
         - USR=${USR}
         - GRP=${GRP}
+      shm_size: 4gb
+    entrypoint: ["/bin/bash", "-c"]
+    command: ["/opt/ansys/ansys_inc/v221/Framework/bin/Linux64/runwb2"]
+    runtime: nvidia
     environment:
       - DISPLAY=${DISPLAY}
       - NVIDIA_DRIVER_CAPABILITIES=all
@@ -19,5 +23,3 @@ services:
       # only for testing, the final image will contain the binaries
       - /opt/ansys:/opt/ansys
     network_mode: host
-    runtime: nvidia
-    shm_size: 4gb
