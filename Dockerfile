@@ -25,7 +25,8 @@ RUN groupadd $GRP \
  && useradd -m -d /home/$USR -s /bin/bash -g $GRP -G video $USR
 USER $USR:$GRP
 ENV HOME /home/$USR
-WORKDIR $HOME
+RUN mkdir $HOME/workspace
+WORKDIR $HOME/workspace
 
 #ADD --chown=ansys:ansys ansys/ /opt/ansys/
 

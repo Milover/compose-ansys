@@ -3,6 +3,7 @@ version: '3.8'
 services:
   ansys:
     image: ansys:latest
+    container_name: ansys
     build:
       context: .
       target: build
@@ -13,6 +14,7 @@ services:
     entrypoint: ["/bin/bash", "-c"]
     command: ["/opt/ansys/ansys_inc/v221/Framework/bin/Linux64/runwb2"]
     runtime: nvidia
+    network_mode: host
     environment:
       - DISPLAY=${DISPLAY}
       - NVIDIA_DRIVER_CAPABILITIES=all
@@ -20,6 +22,6 @@ services:
     volumes:
       #- /tmp/.X11-unix:/tmp/.X11-unix
       - /home/${SUDO_USER}/.Xauthority:/home/${USR}/.Xauthority:rw
+      - .:/home/${USR}/workspace/
       # only for testing, the final image will contain the binaries
       - /opt/ansys:/opt/ansys
-    network_mode: host
