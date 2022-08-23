@@ -6,7 +6,7 @@ services:
     container_name: ansys
     build:
       context: .
-      target: build
+      target: runtime
       args:
         - USR=${USR}
         - GRP=${GRP}
