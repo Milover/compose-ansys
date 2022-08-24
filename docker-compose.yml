@@ -10,7 +10,6 @@ services:
       args:
         - USR=${USR}
         - GRP=${GRP}
-      shm_size: 4gb
       labels:
         hr.unizg.fsb.maintainer: "milovic.ph@gmail.com"
         hr.unizg.fsb.description: "Ansys | Engineering Simulation Software"
@@ -18,11 +17,16 @@ services:
     entrypoint: ["/bin/bash", "-c"]
     command: ["/opt/ansys/ansys_inc/v221/Framework/bin/Linux64/runwb2"]
     runtime: nvidia
-    network_mode: host
+    shm_size: 4gb
     environment:
       - DISPLAY=${DISPLAY}
       - NVIDIA_DRIVER_CAPABILITIES=all
       - NVIDIA_VISIBLE_DEVICES=all
+    user: ${USR}
+    group_add:
+      - ${GRP}
+    working_dir: /home/${USR}/workspace
+    network_mode: host
     volumes:
       #- /tmp/.X11-unix:/tmp/.X11-unix
       - /home/${SUDO_USER}/.Xauthority:/home/${USR}/.Xauthority:rw

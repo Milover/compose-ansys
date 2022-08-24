@@ -26,13 +26,10 @@ FROM build as runtime
 ARG USR
 ARG GRP
 
-# create the user and set the home/work dir
+# create the user/group and workspace directory
 RUN groupadd $GRP \
- && useradd -m -d /home/$USR -s /bin/bash -g $GRP -G video $USR
-USER $USR:$GRP
-ENV HOME /home/$USR
-RUN mkdir $HOME/workspace
-WORKDIR $HOME/workspace
+ && useradd -m -d /home/$USR -s /bin/bash -g $GRP -G video $USR \
+ && mkdir home/$USR/workspace
 
 #ADD --chown=ansys:ansys ansys/ /opt/ansys/
 
