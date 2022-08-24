@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  ansys:
+    image: ansys-base
+    build:
+      context: .
+      dockerfile: base.Dockerfile
+      target: base
+      labels:
+        hr.unizg.fsb.maintainer: "milovic.ph@gmail.com"
+        hr.unizg.fsb.description: "Ansys | Engineering Simulation Software"
+        hr.unizg.fsb.ansys-version: "2022 R1"
