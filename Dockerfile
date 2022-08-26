@@ -13,6 +13,6 @@ RUN groupadd $GRP \
  && useradd -m -d /home/$USR -s /bin/bash -g $GRP -G video $USR \
  && mkdir home/$USR/workspace
 
-#ADD --chown=ansys:ansys ansys/ /opt/ansys/
+#RUN chown -R $USR:$GRP /opt/ansys
 
 # --------------------------------------------------------------------------- #

@@ -18,4 +18,6 @@ RUN apt-get update \
 RUN echo "dash dash/sh boolean false" | debconf-set-selections \
  && dpkg-reconfigure dash
 
+#ADD ansys/ /opt/ansys/
+
 # --------------------------------------------------------------------------- #
