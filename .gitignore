@@ -17,3 +17,6 @@
 *.txz
 *.tar.gz
 *.tar.xz
+
+# Test directory
+test/
