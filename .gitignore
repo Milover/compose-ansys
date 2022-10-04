@@ -20,3 +20,6 @@
 
 # Test directory
 test/
+
+# Environment files
+*.env
