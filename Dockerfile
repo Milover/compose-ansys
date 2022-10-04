@@ -1,36 +1,20 @@
 # syntax=docker/dockerfile:1
 
 # --------------------------------------------------------------------------- #
-# Build image
-
-FROM debian:bullseye as build
-
-# Grab deps
-ARG DEBIAN_FRONTEND=noninteractive
-RUN apt-get update \
- && apt-get install --no-install-recommends -y \
-	apt-utils tcl tk perl gzip tar openssl \
-	libgl1-mesa-dev x11-common zathura libxtst6 mesa-utils firefox-esr \
-	qttools5-dev libqt5x11extras5-dev qtxmlpatterns5-dev-tools libqt5svg5-dev \
- && rm -rf /var/lib/apt/lists/*
-
-# ansys-related stuff
-RUN echo "dash dash/sh boolean false" | debconf-set-selections \
- && dpkg-reconfigure dash
-
-# --------------------------------------------------------------------------- #
 # Runtime image
 
-FROM build as runtime
+FROM ansys-base:latest as runtime
 
 ARG USR
 ARG GRP
+ARG ANSYS_SERVER_HOSTNAME
 
-# create the user/group and workspace directory
+# create the user/group and workspace directory, and update the licence server
 RUN groupadd $GRP \
  && useradd -m -d /home/$USR -s /bin/bash -g $GRP -G video $USR \
- && mkdir home/$USR/workspace
+ && mkdir home/$USR/workspace \
+ && sed -i -e "s/127\.0\.0\.1/$ANSYS_SERVER_HOSTNAME/g" /usr/ansys_inc/shared_files/licensing/ansyslmd.ini
 
-#ADD --chown=ansys:ansys ansys/ /opt/ansys/
+#RUN chown -R $USR:$GRP /opt/ansys
 
 # --------------------------------------------------------------------------- #

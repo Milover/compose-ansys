@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  ansys-base:
+    image: ansys-base
+    build:
+      context: .
+      dockerfile: base.Dockerfile
+      target: base
+      labels:
+        hr.unizg.fsb.description: "Ansys | Engineering Simulation Software"
+        hr.unizg.fsb.repository: "github.com/Milover/compose-ansys"
+        hr.unizg.fsb.maintainer: "milovic.ph@gmail.com"
+        hr.unizg.fsb.ansys-version: "2022 R1"
+      args:
+        - ANSYS_ARCHIVE=${ANSYS_ARCHIVE}
+    runtime: nvidia
+    shm_size: 4gb
+    environment:
+      - DISPLAY=${DISPLAY}
+      - NVIDIA_DRIVER_CAPABILITIES=all
+      - NVIDIA_VISIBLE_DEVICES=all
+    network_mode: host

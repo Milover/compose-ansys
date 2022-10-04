@@ -11,3 +11,16 @@
 # Temporary files
 *.swp
 *~
+
+# Archives
+*.tar
+*.tgz
+*.txz
+*.tar.gz
+*.tar.xz
+
+# Test directory
+test/
+
+# Environment files
+*.env

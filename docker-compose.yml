@@ -2,20 +2,16 @@ version: '3.8'
 
 services:
   ansys:
-    image: ansys:2022R1
-    container_name: ansys
+    image: ansys
     build:
       context: .
       target: runtime
       args:
         - USR=${USR}
         - GRP=${GRP}
-      labels:
-        hr.unizg.fsb.maintainer: "milovic.ph@gmail.com"
-        hr.unizg.fsb.description: "Ansys | Engineering Simulation Software"
-        hr.unizg.fsb.ansys-version: "2022 R1"
+        - ANSYS_SERVER_HOSTNAME=${ANSYS_SERVER_HOSTNAME}
     entrypoint: ["/bin/bash", "-c"]
-    command: ["/opt/ansys/ansys_inc/v221/Framework/bin/Linux64/runwb2"]
+    command: ["/usr/ansys_inc/v221/Framework/bin/Linux64/runwb2"]
     runtime: nvidia
     shm_size: 4gb
     environment:
@@ -29,7 +25,5 @@ services:
     network_mode: host
     volumes:
       #- /tmp/.X11-unix:/tmp/.X11-unix
-      - /home/${SUDO_USER}/.Xauthority:/home/${USR}/.Xauthority:rw
+      - /home/${RUNTIME_USER}/.Xauthority:/home/${USR}/.Xauthority:rw
       - .:/home/${USR}/workspace/
-      # only for testing, the final image will contain the binaries
-      - /opt/ansys:/opt/ansys
