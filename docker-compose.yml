@@ -12,18 +12,21 @@ services:
         - ANSYS_SERVER_HOSTNAME=${ANSYS_SERVER_HOSTNAME}
     entrypoint: ["/bin/bash", "-c"]
     command: ["/usr/ansys_inc/v221/Framework/bin/Linux64/runwb2"]
-    runtime: nvidia
+#    runtime: nvidia
     shm_size: 4gb
     environment:
       - DISPLAY=${DISPLAY}
-      - NVIDIA_DRIVER_CAPABILITIES=all
-      - NVIDIA_VISIBLE_DEVICES=all
+#      - NVIDIA_DRIVER_CAPABILITIES=all
+#      - NVIDIA_VISIBLE_DEVICES=all
     user: ${USR}
     group_add:
       - ${GRP}
     working_dir: /home/${USR}/workspace
     network_mode: host
     volumes:
-      #- /tmp/.X11-unix:/tmp/.X11-unix
+      - /tmp/.X11-unix:/tmp/.X11-unix
       - /home/${RUNTIME_USER}/.Xauthority:/home/${USR}/.Xauthority:rw
       - .:/home/${USR}/workspace/
+    devices:
+      - "/dev/kfd:/dev/kfd"
+      - "/dev/dri:/dev/dri"

@@ -22,6 +22,7 @@ RUN apt-get update \
 	apt-utils tcl tk perl gzip tar openssl \
 	libgl1-mesa-dev x11-common zathura libxtst6 mesa-utils firefox-esr \
 	qttools5-dev libqt5x11extras5-dev qtxmlpatterns5-dev-tools libqt5svg5-dev libqwt-qt5-6 \
+	libdrm-amdgpu1 xserver-xorg-video-amdgpu \
  && rm -rf /var/lib/apt/lists/*
 
 # Install Ansys
