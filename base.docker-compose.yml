@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   ansys-base:
+    image: ansys-base
     build:
       context: .
       dockerfile: base.Dockerfile
