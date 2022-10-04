@@ -13,10 +13,10 @@ services:
         hr.unizg.fsb.ansys-version: "2022 R1"
       args:
         - ANSYS_ARCHIVE=${ANSYS_ARCHIVE}
-      runtime: nvidia
-      shm_size: 4gb
-      environment:
-        - DISPLAY=${DISPLAY}
-        - NVIDIA_DRIVER_CAPABILITIES=all
-        - NVIDIA_VISIBLE_DEVICES=all
-      network_mode: host
+    runtime: nvidia
+    shm_size: 4gb
+    environment:
+      - DISPLAY=${DISPLAY}
+      - NVIDIA_DRIVER_CAPABILITIES=all
+      - NVIDIA_VISIBLE_DEVICES=all
+    network_mode: host
