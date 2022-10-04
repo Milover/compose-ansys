@@ -2,8 +2,7 @@ version: '3.8'
 
 services:
   ansys:
-    image: ansys-base
-    container_name: ansys
+    image: ansys
     build:
       context: .
       target: runtime
@@ -11,9 +10,8 @@ services:
         - USR=${USR}
         - GRP=${GRP}
         - ANSYS_SERVER_HOSTNAME=${ANSYS_SERVER_HOSTNAME}
-    #entrypoint: ["/bin/bash", "-c"]
-    # clean this up from within the container
-    #command: ["/opt/ansys/ansys_inc/v221/Framework/bin/Linux64/runwb2"]
+    entrypoint: ["/bin/bash", "-c"]
+    command: ["/usr/ansys_inc/v221/Framework/bin/Linux64/runwb2"]
     runtime: nvidia
     shm_size: 4gb
     environment:
@@ -27,7 +25,5 @@ services:
     network_mode: host
     volumes:
       #- /tmp/.X11-unix:/tmp/.X11-unix
-      - /home/${SUDO_USER}/.Xauthority:/home/${USR}/.Xauthority:rw
+      - /home/${RUNTIME_USER}/.Xauthority:/home/${USR}/.Xauthority:rw
       - .:/home/${USR}/workspace/
-      # only for testing, the final image will contain the binaries
-      #- /opt/ansys:/opt/ansys
