@@ -13,6 +13,7 @@
 *~
 
 # Archives
+*.tar
 *.tgz
 *.txz
 *.tar.gz
