@@ -11,3 +11,9 @@
 # Temporary files
 *.swp
 *~
+
+# Archives
+*.tgz
+*.txz
+*.tar.gz
+*.tar.xz
