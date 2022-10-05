@@ -9,6 +9,8 @@ services:
       args:
         - USR=${USR}
         - GRP=${GRP}
+        - RUNTIME_UID=${RUNTIME_UID}
+        - RUNTIME_GID=${RUNTIME_GID}
         - ANSYS_SERVER_HOSTNAME=${ANSYS_SERVER_HOSTNAME}
     entrypoint: ["/bin/bash", "-c"]
     command: ["/usr/ansys_inc/v221/Framework/bin/Linux64/runwb2"]

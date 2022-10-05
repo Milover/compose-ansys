@@ -10,8 +10,8 @@ ARG GRP
 ARG ANSYS_SERVER_HOSTNAME
 
 # create the user/group and workspace directory, and update the licence server
-RUN groupadd $GRP \
- && useradd -m -d /home/$USR -s /bin/bash -g $GRP -G video $USR \
+RUN groupadd -g $RUNTIME_GID $GRP \
+ && useradd -m -d /home/$USR -s /bin/bash -g $GRP -G video,render -u $RUNTIME_UID $USR \
  && mkdir home/$USR/workspace \
  && sed -i -e "s/127\.0\.0\.1/$ANSYS_SERVER_HOSTNAME/g" /usr/ansys_inc/shared_files/licensing/ansyslmd.ini
 
